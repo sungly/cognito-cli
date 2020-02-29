@@ -1,0 +1,30 @@
+{
+  "name": "cognito-cli",
+  "version": "1.0.0",
+  "description": "CLI for all Cognito user life cycle management ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sungly/cognito-cli.git"
+  },
+  "keywords": [
+    "cognito",
+    "user-management"
+  ],
+  "bin": {
+    "cognito": "bin/index"
+  },
+  "author": "Ly Sung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sungly/cognito-cli/issues"
+  },
+  "homepage": "https://github.com/sungly/cognito-cli#readme",
+  "dependencies": {
+    "aws-sdk": "^2.630.0",
+    "minimist": "^1.2.0"
+  }
+}
