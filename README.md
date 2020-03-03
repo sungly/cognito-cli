@@ -12,3 +12,12 @@ Running npm link in the root of your project will symlink your binary file to th
 
 node bin/index.js version - return the current status of package.json
 node bin/index.js help - TODO
+
+### Add config to ~/.cognito
+
+```
+user_pool_id=
+client_id=
+client_secret=
+region=
+```
