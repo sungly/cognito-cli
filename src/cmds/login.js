@@ -19,7 +19,6 @@ function clientSecretCheck({ username, password, clientId, clientSecret }) {
 }
 
 async function userPasswordAuth({ username, password }) {
-    let response;
     const { clientId, clientSecret } = config;
 
     const authParams = clientSecretCheck({
@@ -34,9 +33,7 @@ async function userPasswordAuth({ username, password }) {
         AuthParameters: authParams,
     };
 
-    response = await cognitoClient.initiateAuth(params).promise();
-
-    return response;
+    return await cognitoClient.initiateAuth(params).promise();
 }
 
 function login() {
