@@ -2,6 +2,7 @@ import minimist from 'minimist';
 
 import init from './init';
 import login from './login';
+import createUser from './user/create';
 
 const cli = () => {
     const args = minimist(process.argv.slice(2));
@@ -21,6 +22,9 @@ const cli = () => {
         case 'login':
             console.log('@NOTE: Only user password auth is supported atm');
             login();
+            break;
+        case 'create-user':
+            createUser();
             break;
         default:
             console.error(`"${cmd}" is not a valid command!`);

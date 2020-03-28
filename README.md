@@ -16,8 +16,13 @@ node bin/index.js help - TODO
 ### Add config to ~/.cognito
 
 ```
-user_pool_id=
-client_id=
+user_pool_id=ca-central-1_rtgnHEaAc
+client_id=2lpd8ljean1f9qcour2gtdj36v
 client_secret=
-region=
+region=ca-central-1
+requiredAttributeList=["email", "given_name", "family_name"]
 ```
+
+### TODO
+
+-   [ ] add username in the requiredAttrList if different from email + custom:attribute

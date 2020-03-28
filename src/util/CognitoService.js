@@ -1,16 +1,22 @@
 import cognitoClient from './cognitoClient';
-
-const { config } = require('../config');
+import config from '../config';
 
 class UserService {
-    constructor() {}
-
     /**
      * Create a user profile
      *
      * @param {*} param0
      */
-    async createUser({ username, password, attributes }) {}
+    async createUser({ username, password, attributes }) {
+        const params = {
+            ClientId: config.clientId,
+            Password: password,
+            Username: username,
+            UserAttributes: attributes,
+        };
+
+        return cognitoClient.signUp(params).promise();
+    }
 
     /**
      * Confirm user signup
