@@ -10,6 +10,7 @@ const _config = {
     clientId: envConfig.client_id,
     clientSecret: envConfig.client_secret,
     region: envConfig.region,
+    requiredAttributeList: envConfig.requiredAttributeList,
 };
 
 export default _config;

@@ -6,19 +6,30 @@ function initCognitoConfig() {
     prompt.start();
 
     prompt.get(
-        ['userPoolId', 'clientId', 'clientSecret', 'region'],
+        [
+            'userPoolId',
+            'clientId',
+            'clientSecret',
+            'region',
+            'requiredAttributeList',
+        ],
         (err, result) => {
             console.log('Saving params in `~/.cognito/config` ...');
 
-            console.log('   user pool id:   ', result.userPoolId);
-            console.log('   client id:      ', result.clientId);
-            console.log('   client secret:  ', result.clientSecret);
-            console.log('   region:         ', result.region);
+            console.log('   user pool id:       ', result.userPoolId);
+            console.log('   client id:          ', result.clientId);
+            console.log('   client secret:      ', result.clientSecret);
+            console.log('   region:             ', result.region);
+            console.log(
+                '   required attr list: ',
+                result.requiredAttributeList
+            );
 
             const data = `user_pool_id=${result.userPoolId}
             client_id=${result.clientId}
             client_secret=${result.clientSecret}
             region=${result.region}
+            requiredAttributeList=${result.requiredAttributeList}
             `.replace(/ +?/g, '');
 
             const homeDir = os.homedir();
