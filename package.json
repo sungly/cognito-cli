@@ -1,31 +1,43 @@
 {
-  "name": "cognito-cli",
-  "version": "1.0.0",
-  "description": "CLI for all Cognito user life cycle management ",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sungly/cognito-cli.git"
-  },
-  "keywords": [
-    "cognito",
-    "user-management"
-  ],
-  "bin": {
-    "cognito": "bin/index"
-  },
-  "author": "Ly Sung",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sungly/cognito-cli/issues"
-  },
-  "homepage": "https://github.com/sungly/cognito-cli#readme",
-  "dependencies": {
-    "aws-sdk": "^2.630.0",
-    "dotenv": "^8.2.0",
-    "minimist": "^1.2.0"
-  }
+    "name": "cognito-cli",
+    "version": "1.0.0",
+    "description": "CLI for all Cognito user life cycle management ",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": ". scripts/build.sh",
+        "cognito": "npm run build && node lib/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sungly/cognito-cli.git"
+    },
+    "keywords": [
+        "cognito",
+        "user-management",
+        "user-authentication"
+    ],
+    "bin": {
+        "cognito": "bin/index"
+    },
+    "author": "Ly Sung",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sungly/cognito-cli/issues"
+    },
+    "homepage": "https://github.com/sungly/cognito-cli#readme",
+    "dependencies": {
+        "aws-sdk": "^2.630.0",
+        "dotenv": "^8.2.0",
+        "minimist": "^1.2.5",
+        "prompt": "^1.0.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-1": "^6.24.1",
+        "babel-register": "^6.26.0",
+        "rimraf": "^3.0.2"
+    }
 }

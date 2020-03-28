@@ -4,7 +4,7 @@ CLI for all Cognito user life cycle management
 
 #### How to run locally
 
-`node bin/index/js <command>`
+`npm run cognito <command>`
 
 Running npm link in the root of your project will symlink your binary file to the system path, making it accessible from anywhere by running `cognito`.
 
