@@ -1,1 +1,3 @@
-module.exports = require('./cmds');
+import cli from './cmds';
+
+cli();

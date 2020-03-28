@@ -1,6 +1,6 @@
 import minimist from 'minimist';
 
-function cli() {
+const cli = () => {
     const args = minimist(process.argv.slice(2));
     const cmd = args._[0];
 
@@ -19,8 +19,6 @@ function cli() {
             console.error(`"${cmd}" is not a valid command!`);
             break;
     }
-}
+};
 
 export default cli;
-
-// module.exports = cli;
