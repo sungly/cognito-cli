@@ -1,12 +1,14 @@
 import minimist from 'minimist';
 
+import init from './init';
+
 const cli = () => {
     const args = minimist(process.argv.slice(2));
     const cmd = args._[0];
 
     switch (cmd) {
         case 'init':
-            console.log('TODO - add aws region');
+            init();
             break;
         case 'version':
             const packageJson = require('../../package.json');
