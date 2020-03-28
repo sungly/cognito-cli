@@ -1,6 +1,7 @@
 import minimist from 'minimist';
 
 import init from './init';
+import login from './login';
 
 const cli = () => {
     const args = minimist(process.argv.slice(2));
@@ -16,6 +17,10 @@ const cli = () => {
             break;
         case 'help':
             console.log('help todo');
+            break;
+        case 'login':
+            console.log('@NOTE: Only user password auth is supported atm');
+            login();
             break;
         default:
             console.error(`"${cmd}" is not a valid command!`);
