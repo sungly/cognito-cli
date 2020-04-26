@@ -10,7 +10,7 @@ Running npm link in the root of your project will symlink your binary file to th
 
 ### Commands
 
-npm run cognito
+npm run cognito <command>
 
 ### Add config to ~/.cognito
 
