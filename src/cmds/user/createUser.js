@@ -6,7 +6,7 @@ import util from '../../util';
 function createUser() {
     config.requiredAttributeList.push('password');
 
-    const requiredAttributes = config.requiredAttributeList.map(attr => {
+    const requiredAttributes = config.requiredAttributeList.map((attr) => {
         return {
             name: attr,
             required: true,
@@ -14,14 +14,12 @@ function createUser() {
     });
 
     prompt.get(requiredAttributes, async (err, result) => {
-        console.log('Creating user...');
-
         let username = result.username ? result.username : result.email;
         const password = result.password;
 
         delete result.password;
 
-        const attributes = Object.keys(result).map(key => {
+        const attributes = Object.keys(result).map((key) => {
             return {
                 Name: key,
                 Value: result[key],

@@ -9,16 +9,16 @@ class UserService {
         this.clientSecret = clientSecret;
     }
 
-    _addSecretHash({ username, params }) {
+    _addSecretHash({ username, options }) {
         if (this.clientSecret) {
-            params.SecretHash = hash({
+            options.SecretHash = hash({
                 username,
                 clientId: this.clientId,
                 clientSecret: this.clientSecret,
             });
         }
 
-        return params;
+        return options;
     }
 
     /**
@@ -27,12 +27,15 @@ class UserService {
      * @param {*} param0
      */
     async createUser({ username, password, attributes }) {
-        const params = {
-            ClientId: this.clientId,
-            Password: password,
-            Username: username,
-            UserAttributes: attributes,
-        };
+        const params = this._addSecretHash({
+            username,
+            options: {
+                ClientId: this.clientId,
+                Password: password,
+                Username: username,
+                UserAttributes: attributes,
+            },
+        });
 
         return cognitoClient.signUp(params).promise();
     }
@@ -42,13 +45,17 @@ class UserService {
      *
      * @param {*} param0
      */
-    async confirmSignUp({ username }) {
-        const params = {
-            UserPoolId: this.userPoolId,
-            Username: username,
-        };
+    async confirmSignUp({ username, code }) {
+        const params = this._addSecretHash({
+            username,
+            options: {
+                ClientId: this.clientId,
+                Username: username,
+                ConfirmationCode: code,
+            },
+        });
 
-        return cognitoClient.adminConfirmSignUp(params).promise();
+        return cognitoClient.confirmSignUp(params).promise();
     }
 
     /**
@@ -56,23 +63,38 @@ class UserService {
      * @param {*} param0
      */
     async forgotPassword({ username }) {
-        let params = {
-            ClientId: this.clientId,
-            Username: username,
-        };
-
-        params = _addSecretHash({
+        const params = this._addSecretHash({
             username,
-            clientId: this.clientId,
-            clientSecret: this.clientSecret,
-            params,
+            options: {
+                ClientId: this.clientId,
+                Username: username,
+            },
         });
 
         return cognitoClient.forgotPassword(params).promise();
     }
 
     /**
+     * Resend activation/forgot password email to user
+     *
+     * @param {*} param0
+     */
+    async resendConfirmationCode({ username }) {
+        const params = this._addSecretHash({
+            username,
+            options: {
+                ClientId: this.clientId,
+                Username: username,
+            },
+        });
+
+        return cognitoClient.resendConfirmationCode(params).promise();
+    }
+
+    /**
      * Set a new password for the user
+     *
+     * * Requires admin permission
      *
      * @param {*} param0
      */
@@ -84,21 +106,6 @@ class UserService {
             Permanent: true,
         };
         return cognitoClient.adminSetUserPassword(params).promise();
-    }
-
-    /**
-     * Resend activation/forgot password email to user
-     *
-     * @param {*} param0
-     */
-    async resendConfirmationCode({ username }) {
-        let params = {
-            ClientId: this.clientId,
-            Username: username,
-        };
-
-        params = this._addSecretHash({ username, params });
-        return cognitoClient.resendConfirmationCode(params).promise();
     }
 
     /**
@@ -124,13 +131,15 @@ class UserService {
         const params = {
             UserAttributes: [
                 {
-                    Name: 'email',
-                    Value: true,
+                    Name: 'email_verified',
+                    Value: 'true',
                 },
             ],
             UserPoolId: this.userPoolId,
             Username: username,
         };
+
+        console.log(params);
 
         return cognitoClient.adminUpdateUserAttributes(params).promise();
     }
