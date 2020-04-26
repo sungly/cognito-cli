@@ -1,82 +1,193 @@
-const aws = require('aws-sdk');
+import cognitoClient from './cognitoClient';
+import config from '../config';
+import hash from './hash';
 
-const { config } = require('../config');
+class UserService {
+    constructor({ userPoolId, clientId, clientSecret }) {
+        this.userPoolId = userPoolId;
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+    }
 
-class UserManagement {
-  constructor() {
-    this.cognito = new aws.CognitoIdentityServiceProvider({
-      region: config.region,
-    });
-  }
+    _addSecretHash({ username, params }) {
+        if (this.clientSecret) {
+            params.SecretHash = hash({
+                username,
+                clientId: this.clientId,
+                clientSecret: this.clientSecret,
+            });
+        }
 
-  /**
-   * Create a user profile
-   *
-   * @param {*} param0
-   * locale     - preferred language of communication eg. en-CA | fr-CA [required]
-   * email      - email used to register the user                       [required]
-   * password   - user password                                         [required]
-   * appCode    - venture app code                                      [optional]
-   * memberId   - Identity 1.0 memberId                                 [optional]
-   */
-  async createUser({ locale = 'en-CA', email, password, appCode, memberId }) {}
+        return params;
+    }
 
-  /**
-   * Confirm user signup
-   *
-   * @param {*} param0
-   */
-  async confirmSignUp({ username }) {}
+    /**
+     * Create a user profile
+     *
+     * @param {*} param0
+     */
+    async createUser({ username, password, attributes }) {
+        const params = {
+            ClientId: this.clientId,
+            Password: password,
+            Username: username,
+            UserAttributes: attributes,
+        };
 
-  /**
-   * Send user reset password email
-   * @param {*} param0
-   */
-  async forgotPassword({ username }) {}
+        return cognitoClient.signUp(params).promise();
+    }
 
-  /**
-   * Set a new password for the user
-   *
-   * @param {*} param0
-   */
-  async setUserPassword({ username, newPassword }) {}
+    /**
+     * Confirm user signup
+     *
+     * @param {*} param0
+     */
+    async confirmSignUp({ username }) {
+        const params = {
+            UserPoolId: this.userPoolId,
+            Username: username,
+        };
 
-  /**
-   * Resend activation/forgot password email to user
-   *
-   * @param {*} param0
-   */
-  async resendConfirmationCode({ username }) {}
+        return cognitoClient.adminConfirmSignUp(params).promise();
+    }
 
-  /**
-   * Get user profile from user pool
-   *
-   * @param {*} param0
-   */
-  async getUserProfile({ username }) {}
+    /**
+     * Send user reset password email
+     * @param {*} param0
+     */
+    async forgotPassword({ username }) {
+        let params = {
+            ClientId: this.clientId,
+            Username: username,
+        };
 
-  /**
-   * Auto verify user email
-   *
-   * @param {*} param0
-   */
-  async verifyUserEmail({ email }) {}
+        params = _addSecretHash({
+            username,
+            clientId: this.clientId,
+            clientSecret: this.clientSecret,
+            params,
+        });
 
-  /**
-   * Disable user from logging in
-   *
-   * @param {*} param0
-   */
-  async disableUser({ username }) {}
+        return cognitoClient.forgotPassword(params).promise();
+    }
 
-  /**
-   * Update user attribute
-   *
-   * @param {*} param0
-   */
-  async updateUserAttribute({ username, attributeName, attributeValue }) {}
+    /**
+     * Set a new password for the user
+     *
+     * @param {*} param0
+     */
+    async setUserPassword({ username, newPassword }) {
+        const params = {
+            Password: newPassword,
+            UserPoolId: this.userPoolId,
+            Username: username,
+            Permanent: true,
+        };
+        return cognitoClient.adminSetUserPassword(params).promise();
+    }
+
+    /**
+     * Resend activation/forgot password email to user
+     *
+     * @param {*} param0
+     */
+    async resendConfirmationCode({ username }) {
+        let params = {
+            ClientId: this.clientId,
+            Username: username,
+        };
+
+        params = this._addSecretHash({ username, params });
+        return cognitoClient.resendConfirmationCode(params).promise();
+    }
+
+    /**
+     * Get user profile from user pool
+     *
+     * @param {*} param0
+     */
+    async getUserProfile({ username }) {
+        const params = {
+            UserPoolId: this.userPoolId,
+            Username: username,
+        };
+
+        return cognitoClient.adminGetUser(params).promise();
+    }
+
+    /**
+     * Auto verify user email
+     *
+     * @param {*} param0
+     */
+    async verifyUserEmail({ username }) {
+        const params = {
+            UserAttributes: [
+                {
+                    Name: 'email',
+                    Value: true,
+                },
+            ],
+            UserPoolId: this.userPoolId,
+            Username: username,
+        };
+
+        return cognitoClient.adminUpdateUserAttributes(params).promise();
+    }
+
+    /**
+     * Disable user from logging in
+     *
+     * @param {*} param0
+     */
+    async disableUser({ username }) {
+        const params = {
+            UserPoolId: this.userPoolId,
+            Username: username,
+        };
+
+        return cognitoClient.adminDisableUser(params).promise();
+    }
+
+    /**
+     * Enable user
+     *
+     * @param {*} param0
+     */
+    async enableUser({ username }) {
+        const params = {
+            UserPoolId: this.userPoolId,
+            Username: username,
+        };
+
+        return cognitoClient.adminEnableUser(params).promise();
+    }
+
+    /**
+     * Update user attribute
+     *
+     * @param {*} param0
+     */
+    async updateUserAttribute({ username, attributeName, attributeValue }) {
+        const params = {
+            UserAttributes: [
+                {
+                    Name: attributeName,
+                    Value: attributeValue,
+                },
+            ],
+            UserPoolId: this.userPoolId,
+            Username: username,
+        };
+
+        return cognitoClient.adminUpdateUserAttributes(params).promise();
+    }
 }
 
-const user = new UserManagement();
+const _userService = new UserService({
+    userPoolId: config.userPoolId,
+    clientId: config.clientId,
+    clientSecret: config.clientSecret,
+});
 
-module.exports = user;
+export default _userService;
