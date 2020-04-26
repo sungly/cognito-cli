@@ -20,7 +20,7 @@
     "bin": {
         "cognito": "bin/index"
     },
-    "author": "Ly Sung",
+    "author": "Ly Sung, Rocella Jimenez",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/sungly/cognito-cli/issues"
