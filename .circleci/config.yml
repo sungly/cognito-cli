@@ -43,7 +43,8 @@ workflows:
     version: 2
     audit-test-release:
         jobs:
-            - build
+            - build:
+                  context: auth
             - release:
                   context: auth
                   filters:
