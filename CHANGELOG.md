@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/sungly/cognito-cli/compare/v1.0.0...v1.1.0) (2020-05-01)
+
+
+### Features
+
+* **version:** version bump ([859cfee](https://github.com/sungly/cognito-cli/commit/859cfeefb1b225980130f1691d186b307e6ed762))
+
 # 1.0.0 (2020-05-01)
 
 
