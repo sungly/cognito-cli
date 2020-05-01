@@ -3,7 +3,7 @@ commands:
     npm-auth:
         description: Authenticate with registry
         steps:
-            - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+            - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
 
 jobs:
     build:
