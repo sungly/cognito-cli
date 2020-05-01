@@ -28,6 +28,9 @@
         "url": "https://github.com/sungly/cognito-cli/issues"
     },
     "homepage": "https://github.com/sungly/cognito-cli#readme",
+    "publishConfig": {
+        "access": "public"
+    },
     "dependencies": {
         "aws-sdk": "^2.667.0",
         "dotenv": "^8.2.0",
