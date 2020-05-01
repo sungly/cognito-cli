@@ -1,12 +1,13 @@
 {
     "name": "cognito-cli",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "CLI for all Cognito user life cycle management ",
     "main": "src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": ". scripts/build.sh",
-        "cognito": "npm run build && node lib/index.js"
+        "cognito": "npm run build && node lib/index.js",
+        "audit": "npx npm-audit-resolver@2.1.0 check-audit"
     },
     "repository": {
         "type": "git",
@@ -18,7 +19,7 @@
         "user-authentication"
     ],
     "bin": {
-        "cognito": "bin/index"
+        "cognito-cli": "./bin/index.js"
     },
     "author": "Ly Sung, Rocella Jimenez",
     "license": "ISC",
@@ -27,7 +28,7 @@
     },
     "homepage": "https://github.com/sungly/cognito-cli#readme",
     "dependencies": {
-        "aws-sdk": "^2.630.0",
+        "aws-sdk": "^2.667.0",
         "dotenv": "^8.2.0",
         "minimist": "^1.2.5",
         "prompt": "^1.0.0"
