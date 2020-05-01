@@ -2,7 +2,9 @@ import minimist from 'minimist';
 
 import init from './init';
 import login from './login';
-import userCmd from './user';
+import UserCmd from './user';
+
+const userCmd = new UserCmd();
 
 const cli = () => {
     const args = minimist(process.argv.slice(2));
@@ -43,6 +45,13 @@ const cli = () => {
 
             userCmd.forgotPassword();
             break;
+        case 'set-user-password':
+            console.log('Setting user password');
+            console.log('*** Requires admin permission ***');
+
+            userCmd.setUserPassword();
+            break;
+
         case 'get-user-profile':
             console.log('Getting user profile');
             console.log('*** Requires admin permission ***');
