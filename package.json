@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": ". scripts/build.sh",
-        "cognito": "npm run build && node lib/index.js"
+        "cognito": "npm run build && node lib/index.js",
+        "audit": "npx npm-audit-resolver@2.1.0 check-audit"
     },
     "repository": {
         "type": "git",
@@ -18,7 +19,7 @@
         "user-authentication"
     ],
     "bin": {
-        "cognito": "bin/index"
+        "cognito-cli": "bin/index"
     },
     "author": "Ly Sung, Rocella Jimenez",
     "license": "ISC",
@@ -27,18 +28,23 @@
     },
     "homepage": "https://github.com/sungly/cognito-cli#readme",
     "dependencies": {
-        "aws-sdk": "^2.630.0",
+        "aws-sdk": "^2.667.0",
+        "braces": "^3.0.2",
         "dotenv": "^8.2.0",
         "minimist": "^1.2.5",
-        "prompt": "^1.0.0"
+        "prompt": "^1.0.0",
+        "npm-force-resolutions": "0.0.3"
     },
     "devDependencies": {
-        "babel-cli": "^6.26.0",
+        "babel-cli": "7.0.0-beta.3",
         "babel-core": "^6.26.3",
         "babel-plugin-transform-runtime": "^6.23.0",
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-stage-1": "^6.24.1",
         "babel-register": "^6.26.0",
         "rimraf": "^3.0.2"
+    },
+    "resolutions": {
+        "braces": "^3.0.2"
     }
 }
