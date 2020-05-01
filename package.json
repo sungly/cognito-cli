@@ -19,7 +19,7 @@
         "user-authentication"
     ],
     "bin": {
-        "cognito-cli": "bin/index"
+        "cognito-cli": "./bin/index.js"
     },
     "author": "Ly Sung, Rocella Jimenez",
     "license": "ISC",
@@ -32,8 +32,7 @@
         "braces": "^3.0.2",
         "dotenv": "^8.2.0",
         "minimist": "^1.2.5",
-        "prompt": "^1.0.0",
-        "npm-force-resolutions": "0.0.3"
+        "prompt": "^1.0.0"
     },
     "devDependencies": {
         "babel-cli": "7.0.0-beta.3",
@@ -43,8 +42,5 @@
         "babel-preset-stage-1": "^6.24.1",
         "babel-register": "^6.26.0",
         "rimraf": "^3.0.2"
-    },
-    "resolutions": {
-        "braces": "^3.0.2"
     }
 }
