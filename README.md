@@ -21,7 +21,3 @@ client_secret=
 region=ca-central-1
 requiredAttributeList=["email", "given_name", "family_name"]
 ```
-
-### TODO
-
--   [ ] add username in the requiredAttrList if different from email + custom:attribute
