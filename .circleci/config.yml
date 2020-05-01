@@ -5,55 +5,75 @@ commands:
         steps:
             - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
 
+aliases:
+    - &nodejs-docker
+      docker:
+          - image: circleci/node:12
+    - &attach-tmp-workspace
+      attach_workspace:
+          at: /tmp/workspace
+    - &tmp-working-directory
+      working_directory: /tmp/workspace
+    - &remote-docker
+      setup_remote_docker:
+          version: 18.05.0-ce
+
 jobs:
     build:
-        working_directory: ~
-        docker:
-            - image: node:12.0.0
+        <<: *nodejs-docker
+        <<: *tmp-working-directory
         steps:
             - checkout
-
-            - restore_cache:
-                  keys:
-                      - v1-dependencies-{{ checksum "package.json" }}
-                      # fallback to using the latest cache if no exact match is found
-                      - v1-dependencies-
-
+            - *remote-docker
+            - *attach-tmp-workspace
+            # - restore_cache:
+            #       keys:
+            #           - dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
             - npm-auth
-            - run:
-                  name: Update npm
-                  command: npm install npm@latest -g
-            - run:
-                  name: Install audit resolver
-                  command: npm install npm-audit-resolver -g
-            - run:
-                  name: NPM Audit
-                  command: npm run audit
+            # - run:
+            #       name: Update npm
+            #       command: npm install npm@latest -g
+            # - run:
+            #       name: Install audit resolver
+            #       command: npm install npm-audit-resolver -g
             - run:
                   name: Install dependencies
                   command: npm install
+            # - run:
+            #       name: NPM Audit
+            #       command: npm run audit
             - run:
                   name: build
                   command: npm run build
 
-            - save_cache:
-                  paths:
-                      - node_modules
-                  key: v1-dependencies-{{ checksum "package.json" }}
+            - run:
+                  name: Delete devDependencies
+                  command: rm -rf node_modules
+
+            # - save_cache:
+            #       paths:
+            #           - node_modules
+            #       key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
             - persist_to_workspace:
-                  root: ~/
-                  paths: .
+                  root: /tmp/workspace
+                  paths:
+                      - lib
+                      #   - node_modules
 
     release:
-        working_directory: ~
-        docker:
-            - image: node:12.0.0
+        <<: *nodejs-docker
+        <<: *tmp-working-directory
         steps:
             - checkout
+            - *remote-docker
+            - *attach-tmp-workspace
             - npm-auth
             - run:
                   name: Install dependencies
-                  command: npm ci
+                  command: npm install --only=prod
+            - run:
+                  name: Install semantics release
+                  command: sudo npm install semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/release-notes-generator -g
             - run:
                   name: Release
                   command: npm run release
