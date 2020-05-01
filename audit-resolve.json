@@ -1,0 +1,10 @@
+{
+  "decisions": {
+    "786|babel-cli>chokidar>anymatch>micromatch>braces": {
+      "decision": "ignore",
+      "madeAt": 1588353545690
+    }
+  },
+  "rules": {},
+  "version": 1
+}
