@@ -1,0 +1,72 @@
+version: 2.1
+commands:
+    npm-auth:
+        description: Authenticate with registry
+        steps:
+            - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+jobs:
+    build:
+        working_directory: ~
+        docker:
+            - image: node:12.0.0
+        steps:
+            - checkout
+
+            - restore_cache:
+                  keys:
+                      - v1-dependencies-{{ checksum "package.json" }}
+                      # fallback to using the latest cache if no exact match is found
+                      - v1-dependencies-
+
+            - npm-auth
+            - run:
+                  name: Update npm
+                  command: npm install npm@latest -g
+            - run:
+                  name: Install audit resolver
+                  command: npm install npm-audit-resolver -g
+            - run:
+                  name: NPM Audit
+                  command: npm run audit
+            - run:
+                  name: Install dependencies
+                  command: npm install
+            - run:
+                  name: build
+                  command: npm run build
+
+            - save_cache:
+                  paths:
+                      - node_modules
+                  key: v1-dependencies-{{ checksum "package.json" }}
+            - persist_to_workspace:
+                  root: ~/
+                  paths: .
+
+    release:
+        working_directory: ~
+        docker:
+            - image: node:12.0.0
+        steps:
+            - checkout
+            - npm-auth
+            - run:
+                  name: Install dependencies
+                  command: npm ci
+            - run:
+                  name: Release
+                  command: npm run release
+
+workflows:
+    version: 2
+    audit-test-release:
+        jobs:
+            - build
+            - release:
+                  context: auth
+                  filters:
+                      branches:
+                          only: master
+                  requires:
+                      - build
