@@ -10,8 +10,7 @@ Running npm link in the root of your project will symlink your binary file to th
 
 ### Commands
 
-node bin/index.js version - return the current status of package.json
-node bin/index.js help - TODO
+npm run cognito <command>
 
 ### Add config to ~/.cognito
 
