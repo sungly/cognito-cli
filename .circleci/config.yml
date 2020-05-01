@@ -16,6 +16,9 @@ jobs:
                   name: Update npm
                   command: npm install npm@latest -g
             - run:
+                  name: Install audit resolver
+                  command: npm install npm-audit-resolver
+            - run:
                   name: NPM Audit
                   command: npm run audit
             - run:
