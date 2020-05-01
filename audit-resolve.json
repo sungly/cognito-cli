@@ -3,6 +3,38 @@
     "786|babel-cli>chokidar>anymatch>micromatch>braces": {
       "decision": "ignore",
       "madeAt": 1588353545690
+    },
+    "1500|semantic-release>@semantic-release/commit-analyzer>conventional-commits-parser>meow>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
+    },
+    "1500|semantic-release>@semantic-release/release-notes-generator>conventional-commits-parser>meow>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
+    },
+    "1500|@semantic-release/commit-analyzer>conventional-commits-parser>meow>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
+    },
+    "1500|@semantic-release/release-notes-generator>conventional-commits-parser>meow>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
+    },
+    "1500|semantic-release>@semantic-release/release-notes-generator>conventional-changelog-writer>meow>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
+    },
+    "1500|@semantic-release/release-notes-generator>conventional-changelog-writer>meow>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
+    },
+    "1500|semantic-release>@semantic-release/npm>npm>libnpx>yargs>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
+    },
+    "1500|@semantic-release/npm>npm>libnpx>yargs>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1588353824785
     }
   },
   "rules": {},
