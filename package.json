@@ -1,6 +1,6 @@
 {
     "name": "cognito-cli",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "CLI for all Cognito user life cycle management ",
     "main": "src/index.js",
     "scripts": {
