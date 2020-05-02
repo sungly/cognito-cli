@@ -47,7 +47,7 @@ cognito-cli <command>
 
 Available Commands:
 
-init                        # initializing `cognito-cli` with `userPoolId`, `clientId`, `clientSecret`, `region` and `requiredAttributeList`
+init                        # initializing the CLI
 
 login                       # retrieve access, id and refresh token via USER_PASSWORD_AUTH against a specified user pool in the config.
 
