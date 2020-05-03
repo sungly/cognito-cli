@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/sungly/cognito-cli/compare/v1.0.0...v1.0.1) (2020-05-03)
+
+
+### Bug Fixes
+
+* **readme:** Update usage in readme ([4d0eece](https://github.com/sungly/cognito-cli/commit/4d0eece05b2708cc9a1236c94b03cc4ef5dbfbcb))
+
 # 1.0.0 (2020-05-02)
 
 
