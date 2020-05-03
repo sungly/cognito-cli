@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/sungly/cognito-cli/compare/v1.0.1...v1.0.2) (2020-05-03)
+
+
+### Bug Fixes
+
+* **login:** Fixed auth login with client secret ([#9](https://github.com/sungly/cognito-cli/issues/9)) ([a908dd3](https://github.com/sungly/cognito-cli/commit/a908dd38ac52a58ce8c9faca2fb7b0eb73c8bda4))
+
 ## [1.0.1](https://github.com/sungly/cognito-cli/compare/v1.0.0...v1.0.1) (2020-05-03)
 
 
