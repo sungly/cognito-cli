@@ -3,6 +3,7 @@ import minimist from 'minimist';
 import init from './init';
 import login from './login';
 import UserCmd from './user';
+import logger from '../util/logger';
 
 const userCmd = new UserCmd();
 
@@ -16,68 +17,67 @@ const cli = () => {
             break;
         case 'version':
             const packageJson = require('../../package.json');
-            console.log(packageJson.version);
+            logger.info(packageJson.version);
             break;
         case 'help':
-            console.log('help todo');
+            logger.info('help todo');
             break;
         case 'login':
-            console.log('@NOTE: Only user password auth is supported ATM.');
+            logger.info('@NOTE: Only user password auth is supported ATM.');
             login();
             break;
         case 'create-user':
-            console.log('Creating user');
+            logger.info('Creating user');
 
             userCmd.createUser();
             break;
         case 'confirm-user':
-            console.log('Confirming user registration with confirmation code');
+            logger.info('Confirming user registration with confirmation code');
 
             userCmd.confirmUserSignup();
             break;
         case 'resend-confirmation-code':
-            console.log('Resending registration confirmation code');
+            logger.info('Resending registration confirmation code');
 
             userCmd.resendConfirmationCode();
             break;
         case 'forgot-password':
-            console.log('Send forgot password');
+            logger.info('Send forgot password');
 
             userCmd.forgotPassword();
             break;
         case 'set-user-password':
-            console.log('Setting user password');
-            console.log('*** Requires admin permission ***');
+            logger.info('Setting user password');
+            logger.warn('*** Requires admin permission ***');
 
             userCmd.setUserPassword();
             break;
-
         case 'get-user-profile':
-            console.log('Getting user profile');
-            console.log('*** Requires admin permission ***');
+            logger.info('Getting user profile');
+            logger.warn('*** Requires admin permission ***');
 
             userCmd.getUserProfile();
             break;
         case 'verify-user-email':
-            console.log('Verifying user email');
-            console.log('*** Requires admin permission ***');
+            logger.info('Verifying user email');
+            logger.warn('*** Requires admin permission ***');
 
             userCmd.verifyUserEmail();
             break;
         case 'disable-user':
-            console.log('Disabling User');
-            console.log('*** Requires admin permission ***');
+            logger.info('Disabling User');
+            logger.warn('*** Requires admin permission ***');
 
             userCmd.disableUser();
             break;
         case 'enable-user':
-            console.log('Enabling User');
-            console.log('*** Requires admin permission ***');
+            logger.info('Enabling User');
+            logger.warn('*** Requires admin permission ***');
 
             userCmd.enableUser();
             break;
         default:
-            console.error(`"${cmd}" is not a valid command!`);
+            logger.error(`"${cmd}" is not a valid command!`);
             break;
     }
 };

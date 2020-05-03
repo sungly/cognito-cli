@@ -1,7 +1,8 @@
 import prompt from 'prompt';
 
 import config from '../../config';
-import util from '../../util';
+import { userService } from '../../util';
+import logger from '../../util/logger';
 
 class UserCmd {
     createUser() {
@@ -27,13 +28,11 @@ class UserCmd {
                 };
             });
 
-            const res = await util.cognitoService.createUser({
+            await userService.createUser({
                 username,
                 password,
                 attributes,
             });
-
-            console.log(res);
         });
     }
 
@@ -52,12 +51,10 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { username, code } = result;
 
-            const res = await util.cognitoService.confirmSignUp({
+            await userService.confirmSignUp({
                 username,
                 code,
             });
-
-            console.log(res);
         });
     }
 
@@ -72,11 +69,11 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { username } = result;
 
-            const res = await util.cognitoService.resendConfirmationCode({
+            const res = await userService.resendConfirmationCode({
                 username,
             });
 
-            console.log(res);
+            logger.info(res);
         });
     }
 
@@ -91,11 +88,9 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { username } = result;
 
-            const res = await util.cognitoService.forgotPassword({
+            await userService.forgotPassword({
                 username,
             });
-
-            console.log(res);
         });
     }
 
@@ -114,12 +109,10 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { username, password } = result;
 
-            const res = await util.cognitoService.setUserPassword({
+            await userService.setUserPassword({
                 username,
                 newPassword: password,
             });
-
-            console.log(res);
         });
     }
 
@@ -134,11 +127,9 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { username } = result;
 
-            const res = await util.cognitoService.getUserProfile({
+            await userService.getUserProfile({
                 username,
             });
-
-            console.log(res);
         });
     }
 
@@ -153,11 +144,9 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { email } = result;
 
-            const res = await util.cognitoService.verifyUserEmail({
+            await userService.verifyUserEmail({
                 username: email,
             });
-
-            console.log(res);
         });
     }
 
@@ -172,12 +161,9 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { username } = result;
 
-            const res = await util.cognitoService.disableUser({
+            await userService.disableUser({
                 username,
             });
-
-            if (!res) console.log(`User is disabled.`);
-            else console.log(res);
         });
     }
 
@@ -192,12 +178,9 @@ class UserCmd {
         prompt.get(requiredAttributes, async (err, result) => {
             const { username } = result;
 
-            const res = await util.cognitoService.enableUser({
+            await userService.enableUser({
                 username,
             });
-
-            if (!res) console.log(`User is enabled.`);
-            else console.log(res);
         });
     }
 }

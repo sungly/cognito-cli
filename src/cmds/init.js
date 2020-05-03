@@ -2,6 +2,8 @@ import prompt from 'prompt';
 import fs from 'fs';
 import os from 'os';
 
+import logger from '../util/logger';
+
 function initCognitoConfig() {
     prompt.start();
 
@@ -14,13 +16,13 @@ function initCognitoConfig() {
             'requiredAttributeList',
         ],
         (err, result) => {
-            console.log('Saving params in `~/.cognito/config` ...');
+            logger.info('Saving params in `~/.cognito/config` ...');
 
-            console.log('   user pool id:       ', result.userPoolId);
-            console.log('   client id:          ', result.clientId);
-            console.log('   client secret:      ', result.clientSecret);
-            console.log('   region:             ', result.region);
-            console.log(
+            logger.info('   user pool id:       ', result.userPoolId);
+            logger.info('   client id:          ', result.clientId);
+            logger.info('   client secret:      ', result.clientSecret);
+            logger.info('   region:             ', result.region);
+            logger.info(
                 '   required attr list: ',
                 result.requiredAttributeList
             );
@@ -42,13 +44,12 @@ function initCognitoConfig() {
 
             fs.writeFile(cognitoConfigFilePath, data, err => {
                 if (err) {
-                    console.log('Failed to save params...');
-                    console.log(err);
-                    return;
+                    logger.error('Failed to save params...');
+                    logger.error(err);
                 }
             });
 
-            console.log('Params set!');
+            logger.info('Params set!');
         }
     );
 }

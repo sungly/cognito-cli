@@ -1,9 +1,8 @@
 import prompt from 'prompt';
 
-import util from '../util/index';
+import { hash, cognitoClient } from '../util';
 import config from '../config';
-
-const cognitoClient = util.cognitoClient;
+import logger from '../util/logger';
 
 function clientSecretCheck({ username, password, clientId, clientSecret }) {
     const authParams = {
@@ -12,7 +11,7 @@ function clientSecretCheck({ username, password, clientId, clientSecret }) {
     };
 
     if (clientSecret) {
-        authParams.SECRET_HASH = util.hash({
+        authParams.SECRET_HASH = hash({
             username,
             clientId,
             clientSecret,
@@ -55,14 +54,18 @@ function login() {
             },
         ],
         async (err, result) => {
-            console.log('Logging in...');
+            logger.info(`message: Logging in...`);
 
-            const res = await userPasswordAuth({
-                username: result.username,
-                password: result.password,
-            });
+            try {
+                const res = await userPasswordAuth({
+                    username: result.username,
+                    password: result.password,
+                });
 
-            console.log(res);
+                logger.info(res);
+            } catch (e) {
+                logger.error(e.message);
+            }
         }
     );
 }
