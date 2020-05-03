@@ -4,6 +4,24 @@ CLI for Cognito user life cycle management and basic user authentication to retr
 
 `cognito-cli` is a wrapper around [aws-sdk](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityServiceProvider.html#constructor-property) and is intended to make user management easier instead of having to write a script for one time user management during local development.
 
+## Requirements
+
+-   #### AWS credentials
+
+    When interacting with Amazon Cognito, it is a requirement to have aws credentials. There are a few methods available to you for getting these credentials. [Read here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html).
+
+    Once you have obtained aws access id and aws access secret, save them to ~/.aws/credentials:
+
+    ```
+    [default]
+    aws_access_key_id=
+    aws_secret_access_key=
+    ```
+
+-   #### Enable USER_PASSWORD_AUTH on the app client
+
+    General > App client > show details > `Enable SRP (secure remote password) protocol based authentication (ALLOW_USER_SRP_AUTH)`
+
 ## Install
 
 Install globally in order to call `cognito-cli` from anywhere:
@@ -11,22 +29,6 @@ Install globally in order to call `cognito-cli` from anywhere:
 ```
 npm install -g @sungly/cognito-cli
 ```
-
-## Requirements
-
-#### AWS credentials
-
-When interacting with Amazon Cognito, it is a requirement to have aws credentials. There are a few methods available to you for getting these credentials. [Read here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html).
-
-Once you have obtained aws access id and aws access secret, save them to ~/.aws/credentials:
-
-```
-[default]
-aws_access_key_id=
-aws_secret_access_key=
-```
-
-#### Add `cognito-cli` config
 
 Add the following to ~/.cognito/config:
 
