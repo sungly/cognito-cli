@@ -44,11 +44,11 @@ The `requiredAttributeList` is used for user registration. Make sure to include 
 
 ## Usage
 
+`cognito-cli <command>`
+
+##### Available Commands:
+
 ```
-cognito-cli <command>
-
-Available Commands:
-
 init                        # initializing the CLI
 
 login                       # retrieve access, id and refresh token via USER_PASSWORD_AUTH against a specified user pool in the config.
@@ -75,7 +75,7 @@ enable-user                 # allow user to login
 
 ```
 
-Other commands
+##### Other commands
 
 ```
 cognito-cli version         # get the cli version
