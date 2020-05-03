@@ -12,7 +12,11 @@ function clientSecretCheck({ username, password, clientId, clientSecret }) {
     };
 
     if (clientSecret) {
-        authParams.SECRET_HASH = hash({ username, clientId, clientSecret });
+        authParams.SECRET_HASH = util.hash({
+            username,
+            clientId,
+            clientSecret,
+        });
     }
 
     return authParams;
