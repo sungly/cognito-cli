@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/sungly/cognito-cli/compare/v1.0.2...v1.0.3) (2020-05-04)
+
+
+### Bug Fixes
+
+* **logger:** Added winston logger ([8c77b14](https://github.com/sungly/cognito-cli/commit/8c77b14abfc7a8c095c54f39f3fd7f4f9516b526))
+
 ## [1.0.2](https://github.com/sungly/cognito-cli/compare/v1.0.1...v1.0.2) (2020-05-03)
 
 
