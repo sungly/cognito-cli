@@ -3,9 +3,11 @@ import minimist from 'minimist';
 import init from './init';
 import login from './login';
 import UserCmd from './user';
+import TokenCmd from './token';
 import logger from '../util/logger';
 
 const userCmd = new UserCmd();
+const tokenCmd = new TokenCmd();
 
 const cli = () => {
     const args = minimist(process.argv.slice(2));
@@ -75,6 +77,11 @@ const cli = () => {
             logger.warn('*** Requires admin permission ***');
 
             userCmd.enableUser();
+            break;
+        case 'decode-token':
+            logger.info('Decoding Token');
+
+            tokenCmd.decode();
             break;
         default:
             logger.error(`"${cmd}" is not a valid command!`);

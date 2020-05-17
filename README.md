@@ -78,6 +78,8 @@ enable-user                 # allow user to login
 ##### Other commands
 
 ```
+decode-token                # decode JSON web tokens
+
 cognito-cli version         # get the cli version
 
 cognito-cli help            # get help instruction

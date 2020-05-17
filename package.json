@@ -33,10 +33,11 @@
     },
     "dependencies": {
         "aws-sdk": "^2.667.0",
+        "babel-cli": "^6.26.0",
         "dotenv": "^8.2.0",
+        "jsonwebtoken": "^8.5.1",
         "minimist": "^1.2.5",
         "prompt": "^1.0.0",
-        "babel-cli": "^6.26.0",
         "winston": "latest"
     },
     "devDependencies": {

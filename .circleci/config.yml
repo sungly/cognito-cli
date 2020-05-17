@@ -26,39 +26,21 @@ jobs:
             - checkout
             - *remote-docker
             - *attach-tmp-workspace
-            # - restore_cache:
-            #       keys:
-            #           - dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
             - npm-auth
-            # - run:
-            #       name: Update npm
-            #       command: npm install npm@latest -g
-            # - run:
-            #       name: Install audit resolver
-            #       command: npm install npm-audit-resolver -g
             - run:
                   name: Install dependencies
                   command: npm install
-            # - run:
-            #       name: NPM Audit
-            #       command: npm run audit
             - run:
-                  name: build
+                  name: Build
                   command: npm run build
 
             - run:
                   name: Delete devDependencies
                   command: rm -rf node_modules
-
-            # - save_cache:
-            #       paths:
-            #           - node_modules
-            #       key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
             - persist_to_workspace:
                   root: /tmp/workspace
                   paths:
                       - lib
-                      #   - node_modules
 
     release:
         <<: *nodejs-docker
@@ -79,7 +61,7 @@ jobs:
                   command: npm run release
 
 workflows:
-    version: 2
+    version: 2.1
     audit-test-release:
         jobs:
             - build
