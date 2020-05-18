@@ -1,7 +1,7 @@
 import prompt from 'prompt';
 
 import config from '../../config';
-import { userService } from '../../util';
+import { userService } from '../../services';
 import logger from '../../util/logger';
 
 class UserCmd {

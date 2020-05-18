@@ -1,7 +1,7 @@
 import winston from 'winston';
 
 const timestamp = new Date().toISOString();
-const format = winston.format.printf(function(info) {
+const logging = winston.format.printf(function(info) {
   return `[${info.level}]-${timestamp}: ${info.message}`;
 });
 
@@ -18,7 +18,10 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.Console({
       level: 'info',
-      format: winston.format.combine(winston.format.colorize(), format)
+      format: winston.format.combine(
+          winston.format.colorize(),
+          winston.format.splat(),
+          logging)
     })
   ]
 });

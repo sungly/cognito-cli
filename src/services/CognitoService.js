@@ -1,6 +1,6 @@
-import {cognitoClient} from './cognitoClient';
+import { cognitoClient } from '../util/cognitoClient';
 import config from '../config';
-import {hash} from './hash';
+import { hash } from '../util/hash';
 import logger from '../util/logger';
 
 class UserService {
@@ -42,7 +42,7 @@ class UserService {
             const res = await cognitoClient.signUp(params).promise();
             logger.info(res);
         } catch (error) {
-            logger.error(error);
+            logger.error(error.message);
         }
     }
 
