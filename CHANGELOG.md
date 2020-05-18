@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/sungly/cognito-cli/compare/v1.0.3...v1.1.0) (2020-05-18)
+
+
+### Features
+
+* **decode:** Add decode command ([a6f00c5](https://github.com/sungly/cognito-cli/commit/a6f00c59d7f4a8f149abfd9e179b6819465291e5))
+
 ## [1.0.3](https://github.com/sungly/cognito-cli/compare/v1.0.2...v1.0.3) (2020-05-04)
 
 
