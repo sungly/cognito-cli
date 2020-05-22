@@ -73,6 +73,8 @@ disable-user                # disable user from logging in
 
 enable-user                 # allow user to login
 
+batch-delete-user           # delete all users from a user pool
+
 ```
 
 ##### Other commands

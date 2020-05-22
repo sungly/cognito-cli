@@ -1,4 +1,5 @@
 import prompt from 'prompt';
+import Promise from "bluebird";
 
 import config from '../../config';
 import { userService } from '../../services';
@@ -181,6 +182,35 @@ class UserCmd {
             await userService.enableUser({
                 username,
             });
+        });
+    }
+
+    async batchDeleteUsers() {
+        const requiredAttributes = [
+            {
+                name: 'Confirmation',
+                description: `Are you sure you want to delete? yes/no`,
+                pattern: /^(?:yes|Yes|no|No)$/,
+                required: true,
+            },
+        ];
+
+        prompt.get(requiredAttributes, async (err, result) => {
+            if (result.Confirmation.toLowerCase() === 'yes') {
+                let users;
+
+                do {
+                    const results = await userService.listUsers();
+                    users = results.Users.map(users => users.Username);
+                    logger.info(`Number of users found ${users.length}`);
+
+                    await Promise.map(users, async username => {
+                        await userService.deleteUsers(username)
+                    }, {concurrency: 3});
+
+                    logger.info(`Successfully deleted ${users.length}`);
+                } while (users.length !== 0);
+            }
         });
     }
 }
