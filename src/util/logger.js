@@ -2,7 +2,7 @@ import winston from 'winston';
 
 const timestamp = new Date().toISOString();
 const logging = winston.format.printf(function(info) {
-  return `[${info.level}]-${timestamp}: ${info.message}`;
+  return `[${info.level}]-${timestamp}: ${JSON.stringify(info.message, null, 4)}`;
 });
 
 winston.addColors({
