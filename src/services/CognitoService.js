@@ -245,6 +245,44 @@ class UserService {
             logger.error(error.message);
         }
     }
+
+    /**
+     * List users
+     *
+     * @param token
+     * @returns {Promise<*>}
+     */
+    async listUsers(token) {
+        const params = {
+            UserPoolId: this.userPoolId,
+            PaginationToken: token
+        };
+
+        try {
+            return await cognitoClient.listUsers(params).promise();
+        } catch (error) {
+            logger.error(error.message)
+        }
+    }
+
+    /**
+     * Delete Users
+     *
+     * @param username
+     * @returns {Promise<*>}
+     */
+    async deleteUsers(username) {
+        const params = {
+            UserPoolId: this.userPoolId,
+            Username: username
+        };
+
+        try {
+            return await cognitoClient.adminDeleteUser(params).promise();
+        } catch (error) {
+            logger.error(error.message)
+        }
+    }
 }
 
 export const userService = new UserService({

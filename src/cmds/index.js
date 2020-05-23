@@ -21,12 +21,15 @@ const cli = () => {
         case 'version':
             const packageJson = require('../../package.json');
             logger.info(packageJson.version);
+
             break;
         case 'help':
             logger.info('help todo');
+
             break;
         case 'login':
             logger.info('@NOTE: Only user password auth is supported ATM.');
+
             login();
             break;
         case 'create-user':
@@ -79,6 +82,12 @@ const cli = () => {
 
             userCmd.enableUser();
             break;
+        case 'batch-delete-users':
+            logger.info('Deleting ALL Users');
+            logger.warn('*** Requires admin permission ***');
+
+            userCmd.batchDeleteUsers();
+            break;
         case 'decode-token':
             logger.info('Decoding Token');
 
@@ -86,6 +95,7 @@ const cli = () => {
             break;
         default:
             logger.error(`"${cmd}" is not a valid command!`);
+
             break;
     }
 };
