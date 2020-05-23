@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/sungly/cognito-cli/compare/v1.1.0...v1.1.1) (2020-05-23)
+
+
+### Bug Fixes
+
+* **cli-init:** fixed cli init for required attributes ([#15](https://github.com/sungly/cognito-cli/issues/15)) ([f8842d7](https://github.com/sungly/cognito-cli/commit/f8842d77890475a6ca24822f88f276afccf64b04))
+
 # [1.1.0](https://github.com/sungly/cognito-cli/compare/v1.0.3...v1.1.0) (2020-05-18)
 
 
