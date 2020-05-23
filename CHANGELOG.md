@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/sungly/cognito-cli/compare/v1.1.1...v1.1.2) (2020-05-23)
+
+
+### Bug Fixes
+
+* **logger:** Updating logger for json objects ([c47193f](https://github.com/sungly/cognito-cli/commit/c47193f1c3da115264a7a31b01b0bb330e8d00a5))
+
 ## [1.1.1](https://github.com/sungly/cognito-cli/compare/v1.1.0...v1.1.1) (2020-05-23)
 
 
