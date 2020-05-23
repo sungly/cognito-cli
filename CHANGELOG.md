@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/sungly/cognito-cli/compare/v1.1.2...v1.2.0) (2020-05-23)
+
+
+### Features
+
+* **batch:** Batch delete users ([c639aaa](https://github.com/sungly/cognito-cli/commit/c639aaa1da86aad7f2f2ce20fe9e9e3a1b10eac1))
+
 ## [1.1.2](https://github.com/sungly/cognito-cli/compare/v1.1.1...v1.1.2) (2020-05-23)
 
 
