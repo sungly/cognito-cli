@@ -13,7 +13,11 @@ function initCognitoConfig() {
             'clientId',
             'clientSecret',
             'region',
-            'requiredAttributeList',
+            {
+                name: 'requiredAttributeList',
+                description: `requiredAttributeList: ie. email, given_name`,
+                required: true,
+            },
         ],
         (err, result) => {
             logger.info('Saving params in `~/.cognito/config` ...');
@@ -23,7 +27,7 @@ function initCognitoConfig() {
             logger.info('   client secret:      ', result.clientSecret);
             logger.info('   region:             ', result.region);
             logger.info(
-                '   required attr list: ',
+                `   required attr list: `,
                 result.requiredAttributeList
             );
 
@@ -31,7 +35,9 @@ function initCognitoConfig() {
             client_id=${result.clientId}
             client_secret=${result.clientSecret}
             region=${result.region}
-            requiredAttributeList=${result.requiredAttributeList}
+            requiredAttributeList=${JSON.stringify(
+                result.requiredAttributeList.split(',')
+            )}
             `.replace(/ +?/g, '');
 
             const homeDir = os.homedir();
@@ -42,7 +48,7 @@ function initCognitoConfig() {
                 fs.mkdirSync(cognitoConfigFolderPath);
             }
 
-            fs.writeFile(cognitoConfigFilePath, data, err => {
+            fs.writeFile(cognitoConfigFilePath, data, (err) => {
                 if (err) {
                     logger.error('Failed to save params...');
                     logger.error(err);

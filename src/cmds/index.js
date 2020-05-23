@@ -15,6 +15,7 @@ const cli = () => {
 
     switch (cmd) {
         case 'init':
+            logger.info('Configuring the CLI');
             init();
             break;
         case 'version':
