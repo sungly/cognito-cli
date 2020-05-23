@@ -12,7 +12,7 @@ class TokenCmd {
 
         prompt.get(requiredAttributes, async (err, result) => {
             const decoded = jwt.decode(result.token);
-            logger.info(JSON.stringify(decoded, null, 4));
+            logger.info(decoded);
         });
     }
 }
