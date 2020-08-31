@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/sungly/cognito-cli/compare/v1.2.0...v1.3.0) (2020-08-31)
+
+
+### Features
+
+* fix batch delete command from read me ([929b789](https://github.com/sungly/cognito-cli/commit/929b7891a1558e33d5179670194f8c8d71dc996a))
+
 # [1.2.0](https://github.com/sungly/cognito-cli/compare/v1.1.2...v1.2.0) (2020-05-23)
 
 
