@@ -6,7 +6,7 @@ CLI for Cognito user life cycle management and basic user authentication to retr
 
 ## Requirements
 
--   #### AWS credentials
+-   ### AWS credentials
 
     When interacting with Amazon Cognito, it is a requirement to have aws credentials. There are a few methods available to you for getting these credentials. [Read here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html).
 
@@ -18,7 +18,7 @@ CLI for Cognito user life cycle management and basic user authentication to retr
     aws_secret_access_key=
     ```
 
--   #### Enable USER_PASSWORD_AUTH on the app client
+-   ### Enable USER_PASSWORD_AUTH on the app client
 
     General > App client > show details > `Enable SRP (secure remote password) protocol based authentication (ALLOW_USER_SRP_AUTH)`
 
