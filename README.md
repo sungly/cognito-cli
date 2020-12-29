@@ -20,7 +20,7 @@ CLI for Cognito user life cycle management and basic user authentication to retr
 
 -   ### Enable USER_PASSWORD_AUTH on the app client
 
-    General > App client > show details > `Enable SRP (secure remote password) protocol based authentication (ALLOW_USER_SRP_AUTH)`
+    General > App client > show details > `Enable username password based authentication (ALLOW_USER_PASSWORD_AUTH)`
 
 ## Install
 
