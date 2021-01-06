@@ -3,7 +3,7 @@ import Promise from "bluebird";
 
 import config from '../../config';
 import { userService } from '../../services';
-import logger from '../../util/logger';
+import {logger} from '../../util';
 
 class UserCmd {
     createUser() {
