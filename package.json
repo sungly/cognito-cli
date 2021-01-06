@@ -32,14 +32,15 @@
         "access": "public"
     },
     "dependencies": {
+        "amazon-user-pool-srp-client": "^1.0.4",
         "aws-sdk": "^2.667.0",
         "babel-cli": "^6.26.0",
         "bluebird": "^3.7.2",
         "dotenv": "^8.2.0",
         "jsonwebtoken": "^8.5.1",
         "minimist": "^1.2.5",
-        "prompt": "^1.0.0",
-        "winston": "latest"
+        "prompt": "^1.1.0",
+        "winston": "^3.3.3"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^3.0.6",
