@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/sungly/cognito-cli/compare/v1.3.0...v1.4.0) (2021-01-08)
+
+
+### Features
+
+* **auth:** add SRP authentication ([#25](https://github.com/sungly/cognito-cli/issues/25)) ([9f5aedc](https://github.com/sungly/cognito-cli/commit/9f5aedcdd6d94a68a0bc9c5dfac31ada818bd51b))
+
 # [1.3.0](https://github.com/sungly/cognito-cli/compare/v1.2.0...v1.3.0) (2020-08-31)
 
 
