@@ -1,8 +1,7 @@
 import prompt from 'prompt';
 
-import { hash, cognitoClient } from '../../util';
+import { hash, cognitoClient, logger} from '../../util';
 import config from '../../config';
-import logger from '../../util/logger';
 
 function clientSecretCheck({ username, password, clientId, clientSecret }) {
     const authParams = {

@@ -2,20 +2,7 @@ import prompt from 'prompt';
 import { SRPClient, calculateSignature, getNowString } from 'amazon-user-pool-srp-client'
 
 import config from '../../config';
-import { hash, logger, cognitoClient } from '../../util';
-
-
-function addSecretHashToParams({ params, username, clientId, clientSecret }) {
-    if (clientSecret) {
-        params.SECRET_HASH = hash({
-            username,
-            clientId,
-            clientSecret,
-        });
-    }
-
-    return params;
-}
+import { logger, cognitoClient, addSecretHashToParams } from '../../util';
 
 function responseToSrpAuth({ 
     ChallengeName, 
@@ -45,7 +32,6 @@ function responseToSrpAuth({
         TIMESTAMP: dateNow,
         USERNAME: ChallengeParameters.USERNAME
       }
-
 
     const params = {
         ClientId: clientId,
@@ -100,7 +86,6 @@ export default function srpLogin() {
             const { userPoolId, clientId, clientSecret } = config;
 
             const poolId = userPoolId.split('_')[1];
-            
 
             const srpClient = new SRPClient(poolId)
 
