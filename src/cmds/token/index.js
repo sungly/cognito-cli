@@ -1,7 +1,7 @@
 import prompt from 'prompt';
 import jwt from 'jsonwebtoken';
 
-import logger from '../../util/logger';
+import {logger} from '../../util';
 
 class TokenCmd {
     decode() {

@@ -2,7 +2,7 @@ import prompt from 'prompt';
 import fs from 'fs';
 import os from 'os';
 
-import logger from '../util/logger';
+import {logger} from '../util';
 
 function initCognitoConfig() {
     prompt.start();
