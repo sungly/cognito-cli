@@ -14,7 +14,7 @@ winston.addColors({
   error: 'red'
 });
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
   transports: [
     new winston.transports.Console({
       level: 'info',
@@ -26,4 +26,3 @@ const logger = winston.createLogger({
   ]
 });
 
-export default logger;

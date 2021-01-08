@@ -1,10 +1,11 @@
 import minimist from 'minimist';
 
 import init from './init';
-import login from './login';
+import userPasswordAuthLogin from './authentication/user-password-login';
+import srpLogin from './authentication/srp-login';
 import UserCmd from './user';
 import TokenCmd from './token';
-import logger from '../util/logger';
+import {logger} from '../util';
 
 const userCmd = new UserCmd();
 const tokenCmd = new TokenCmd();
@@ -28,9 +29,14 @@ const cli = () => {
 
             break;
         case 'login':
-            logger.info('@NOTE: Only user password auth is supported ATM.');
+            logger.info('Logging in with user password auth');
+            userPasswordAuthLogin();
+            break;
+        case 'srp-login':
+            logger.info('Logging in with SRP');
 
-            login();
+            srpLogin();
+
             break;
         case 'create-user':
             logger.info('Creating user');

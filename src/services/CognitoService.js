@@ -1,7 +1,7 @@
 import { cognitoClient } from '../util/cognitoClient';
 import config from '../config';
 import { hash } from '../util/hash';
-import logger from '../util/logger';
+import {logger} from '../util';
 
 class UserService {
     constructor({userPoolId, clientId, clientSecret}) {
