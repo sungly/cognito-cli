@@ -55,6 +55,6 @@
         "babel-preset-stage-1": "^6.24.1",
         "babel-register": "^6.26.0",
         "rimraf": "^3.0.2",
-        "semantic-release": "^17.0.7"
+        "semantic-release": "^19.0.3"
     }
 }
